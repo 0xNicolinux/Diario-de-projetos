@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diário de Projetos — Nícolas Adriel · SENAI</title>
+<meta name="description" content="Diário dos projetos do curso no SENAI, com os jogos para jogar direto na página.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kalam:wght@300;400;700&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="rule" aria-hidden="true"><i id="ink"></i></div>
+
+<nav class="nav" aria-label="Seções">
+  <a href="#capa">Capa</a><a href="#indice">Índice</a><a href="#capitulos">Projetos</a><a href="#sobre">Sobre</a>
+  <button class="btn" id="theme" type="button">🌙 à noite</button>
+</nav>
+
+<main><article class="book"><div class="spiral" aria-hidden="true"></div>
+  <section class="hero" id="capa">
+    <div class="meta"><span>Nome: <b>Nícolas Adriel</b></span><span>Turma: <b>APB-044.029</b></span><span>Data: <b id="clock">__/__/____</b></span></div>
+    <h1 class="h">Diário de projetos<span class="dot">.</span></h1>
+    <p class="lead">Anotações dos projetos de que participei durante o curso no SENAI: o que cada um é, <span class="hl">o que aprendi</span> e algumas curiosidades. Pode jogar tudo aqui mesmo.</p>
+    <p class="hint">role pra folhear ↓</p>
+    <div class="stats"><div class="sticky"><span id="sTotal">0</span>projetos</div><div class="sticky"><span id="sPlayed">0</span>você já abriu</div><div class="sticky"><span>?</span>próximo</div></div>
+  </section>
+
+  <div class="pg"><span id="pgIdx"></span></div>
+  <section class="reveal" id="indice">
+    <h2 class="h">Índice</h2><ol class="idx" id="idx"></ol></section>
+
+  <div id="capitulos"></div>
+
+  <div class="pg"><span id="pgEnd"></span></div>
+  <section class="reveal" id="sobre">
+    <h2 class="h">Sobre este caderno</h2>
+    <p class="lead">É só um caderno de estudante: guardo aqui o que construí, o que aprendi no caminho e o que ainda quero <span class="hl">melhorar</span>. Se algum jogo travar ou tiver erro, o código está aberto e dá pra me avisar.</p>
+    <p class="sign">— Nícolas</p>
+    <footer><a href="https://github.com/0xNicolinux" target="_blank" rel="noreferrer">github ↗</a></footer>
+  </section>
+</article></main>
+
+<div id="player" role="dialog" aria-modal="true" aria-label="Jogo">
+  <div class="bar"><span id="pTitle">✎</span><div><button id="pPrev" type="button">← anterior</button><button id="pNext" type="button">próximo →</button><button id="pFull" type="button">tela cheia ⛶</button><a id="pTab" href="#" target="_blank" rel="noreferrer">nova aba ↗</a><button class="x" id="pClose" type="button">fechar (Esc) ✕</button></div></div>
+  <div class="stage"><p>carregando o jogo…<br>se a tela ficar em branco, use “nova aba ↗”.</p><iframe id="frame" title="Jogo" allow="autoplay; fullscreen; gamepad" allowfullscreen></iframe></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

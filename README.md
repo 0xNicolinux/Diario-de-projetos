@@ -1,40 +1,36 @@
 # Diário de Projetos
 
-Um caderno digital interativo para reunir projetos desenvolvidos durante o curso no SENAI — com descrições, aprendizados, curiosidades e acesso aos jogos diretamente pela página.
+Caderno digital interativo que reúne projetos desenvolvidos durante o curso no SENAI. Cada projeto é apresentado como um capítulo, com descrição, objetivo, curiosidades e acesso à experiência publicada.
 
 ## Funcionalidades
 
-- **Visual de caderno:** páginas pautadas, anotações e cartões inspirados em um diário físico.
-- **Índice automático:** os capítulos, a numeração e as páginas são gerados a partir da lista de projetos.
-- **Jogos integrados:** abra os projetos na própria página, navegue entre eles ou use a opção de nova aba.
-- **Prévia ao vivo:** em telas maiores, os jogos podem aparecer em miniatura nos cartões.
-- **Tema claro/escuro:** alterne a aparência conforme sua preferência.
-- **Progresso salvo localmente:** o site registra no navegador quais projetos você já abriu.
-- **Cena 3D decorativa:** folhas e lápis acompanham a navegação pela página.
+- **Apresentação em formato de diário:** páginas pautadas, anotações e cartões inspirados em um caderno físico.
+- **Índice gerado automaticamente:** capítulos, numeração e páginas são derivados da lista de projetos.
+- **Projetos integrados:** abre experiências dentro da página por meio de `iframe`, com opção de abrir em uma nova aba.
+- **Prévia dos projetos:** em telas maiores, os cartões podem exibir miniaturas das experiências.
+- **Tema claro e escuro:** alternância de aparência.
+- **Progresso local:** registra no navegador quais projetos já foram abertos.
+- **Detalhe visual em 3D:** folhas e lápis acompanham a navegação usando Three.js.
 
 ## Como executar localmente
 
-O projeto é uma página estática e não precisa de instalação de dependências nem de processo de build. Como os jogos são carregados em `iframe` e alguns recursos vêm de serviços externos, é recomendável abrir o site por um servidor HTTP local.
+O projeto é uma página estática e não exige instalação de dependências nem etapa de build. Recomenda-se iniciar um servidor HTTP local, pois os projetos são carregados em `iframe` e alguns recursos são obtidos de serviços externos.
 
-1. Baixe ou clone este repositório.
-2. Entre na pasta do projeto.
-3. Inicie um servidor local. Por exemplo, com Node.js instalado:
+Com Node.js:
 
-   ```bash
-   npx serve .
-   ```
+~~~bash
+npx serve .
+~~~
 
-4. Abra no navegador o endereço local informado pelo comando.
+Ou utilize a extensão Live Server no Visual Studio Code.
 
-Também é possível usar a extensão **Live Server** no Visual Studio Code.
+Abra o endereço local informado pelo servidor. Abrir `index.html` diretamente pelo sistema de arquivos pode limitar alguns recursos. Caso uma experiência não carregue no player incorporado, utilize a opção de abri-la em uma nova aba.
 
-> Abrir o `index.html` diretamente pelo sistema de arquivos pode causar limitações em alguns recursos. Se um jogo não carregar dentro da página, tente a opção **Nova aba** do player.
+## Adicionar um projeto
 
-## Como adicionar um projeto
+Os dados dos capítulos ficam em `js/data.js`, no array `window.PROJECTS`. Adicione um objeto à lista:
 
-Edite `js/data.js` e acrescente um objeto ao array `window.PROJECTS`. A ordem dos objetos define a ordem dos capítulos no diário.
-
-```js
+~~~js
 {
   id: "meu-projeto",
   name: "Nome do projeto",
@@ -46,45 +42,49 @@ Edite `js/data.js` e acrescente um objeto ao array `window.PROJECTS`. A ordem do
     "Curiosidade ou detalhe interessante.",
     "Outra informação sobre o projeto."
   ],
-  involvement: "Conte qual foi sua participação.",
+  involvement: "Descreva sua participação.",
   url: "https://exemplo.com/meu-projeto/",
   repo: "https://github.com/usuario/meu-projeto",
   emoji: "🚀",
   bg: "linear-gradient(135deg, #f6c177, #e07a5f)"
 }
-```
+~~~
 
-### Campos importantes
+A ordem dos objetos define a ordem dos capítulos no diário.
 
-| Campo | Para que serve |
+### Campos
+
+| Campo | Finalidade |
 |---|---|
-| `id` | Identificador único usado para registrar o progresso |
-| `name` | Nome do projeto |
-| `tags` | Lista de etiquetas exibidas no cartão |
-| `desc` | Resumo curto |
-| `about` | Descrição do projeto |
-| `goal` | Objetivo do projeto |
-| `facts` | Lista de curiosidades ou destaques |
-| `involvement` | Descrição da sua participação |
-| `url` | Endereço publicado do projeto ou jogo |
-| `repo` | Link para o repositório de código |
-| `emoji` | Símbolo exibido na capa do cartão |
-| `bg` | Fundo CSS da capa do cartão |
+| `id` | Identificador único usado para registrar o progresso. |
+| `name` | Nome exibido para o projeto. |
+| `tags` | Categorias e tecnologias exibidas no cartão. |
+| `desc` | Resumo curto. |
+| `about` | Apresentação mais detalhada. |
+| `goal` | Objetivo do projeto. |
+| `facts` | Lista de fatos ou curiosidades. |
+| `involvement` | Descrição da participação no desenvolvimento. |
+| `url` | Endereço da versão publicada. |
+| `repo` | Link para o repositório de código. |
+| `emoji` | Símbolo mostrado no cartão. |
+| `bg` | Valor CSS usado no fundo da capa. |
 
-Mantenha os `id` únicos e preencha todos os campos usados pela interface. Depois de salvar `data.js`, recarregue a página para conferir as alterações.
+Mantenha os identificadores `id` únicos e preencha os campos utilizados pela interface. Recarregue a página após editar `data.js`.
 
-## Tecnologias utilizadas
+## Tecnologias
 
-- **HTML5** — estrutura e conteúdo.
-- **CSS3** — layout responsivo, animações e temas.
-- **JavaScript** — criação dos capítulos e interações.
-- **[Three.js](https://threejs.org/)** — cenário 3D decorativo.
-- **Google Fonts** — tipografias usadas no estilo de caderno.
+- **HTML5** — estrutura da página.
+- **CSS3** — layout responsivo, temas e animações.
+- **JavaScript** — geração dos capítulos e interações.
+- **Three.js** — cena 3D decorativa.
+- **Google Fonts** — tipografia.
 
-O Three.js e as fontes são carregados de serviços externos; por isso, alguns detalhes visuais podem não aparecer sem conexão com a internet. Os jogos também são hospedados externamente.
+Three.js e as fontes são carregados de serviços externos; alguns detalhes visuais dependem de conexão com a internet. As experiências dos projetos também são hospedadas externamente.
 
 ## Dados e privacidade
 
-A lista de projetos fica no arquivo `js/data.js`. O progresso dos projetos abertos é guardado no `localStorage` do próprio navegador e não é sincronizado entre dispositivos. Limpar os dados do site no navegador pode apagar esse progresso.
+A lista de projetos fica no arquivo `js/data.js`. O progresso de navegação é armazenado no `localStorage` do navegador e não é sincronizado entre dispositivos. Limpar os dados do site pode remover esse histórico.
 
-Feito por **Nícolas Adriel** como registro de projetos, experiências e aprendizados durante o curso.
+## Autoria
+
+Desenvolvido por **Nícolas Adriel** como registro de projetos, experiências e aprendizados durante o curso no SENAI.
